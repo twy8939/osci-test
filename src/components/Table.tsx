@@ -6,10 +6,24 @@ interface TableProps {
   rows?: RowType[];
   head: HeadType;
   isLoading?: boolean;
+  rowsPerPage?: number;
 }
 
-const Table: React.FC<TableProps> = ({ rows, head, isLoading = false }) => {
-  return <DynamicTable rows={rows || []} head={head} isLoading={isLoading} />;
+const Table: React.FC<TableProps> = ({
+  rows,
+  head,
+  isLoading = false,
+  rowsPerPage = undefined,
+}) => {
+  return (
+    <DynamicTable
+      rows={rows || []}
+      head={head}
+      isLoading={isLoading}
+      rowsPerPage={rowsPerPage}
+      defaultPage={rowsPerPage && 1}
+    />
+  );
 };
 
 export default Table;

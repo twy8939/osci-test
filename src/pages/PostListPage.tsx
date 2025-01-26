@@ -66,7 +66,7 @@ export default function PostListPage() {
         searchKeys={["title"]}
         placeholderKey="post:search"
       />
-      <Table rows={rows} head={head} isLoading={isLoading} />
+      <Table rows={rows} head={head} isLoading={isLoading} rowsPerPage={10} />
     </div>
   );
 }
