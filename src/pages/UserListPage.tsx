@@ -30,11 +30,11 @@ export default function UserListPage() {
     cells: [
       {
         key: "name",
-        content: "Name",
+        content: t("name"),
       },
       {
         key: "email",
-        content: "Email",
+        content: t("email"),
       },
     ],
   };
@@ -55,7 +55,7 @@ export default function UserListPage() {
 
   return (
     <div>
-      <PageHeader>{t("title")}</PageHeader>
+      <PageHeader>{t("page_header")}</PageHeader>
       <SearchBar
         data={data || []}
         onSearch={handleSearch}

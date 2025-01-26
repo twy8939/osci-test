@@ -1,0 +1,9 @@
+{
+  "page_header": "게시물 관리",
+  "search": "제목을 검색 해주세요.",
+  "id": "번호",
+  "title": "제목",
+  "content": "내용",
+  "userId": "작성자",
+  "createdAt": "작성일"
+}

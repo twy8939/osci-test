@@ -18,7 +18,7 @@ export default function UserDetailPage() {
 
   return (
     <div>
-      <PageHeader>{t("title")}</PageHeader>
+      <PageHeader>{t("page_header")}</PageHeader>
       <Form onSubmit={(values) => console.log("submit", values)}>
         {({ formProps }) => (
           <form {...formProps}>
