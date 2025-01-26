@@ -1,17 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import UserListPage from "./pages/UserListPage";
-import PostListPage from "./pages/PostListPage";
-import TaskListPage from "./pages/TaskListPage";
+import { BrowserRouter } from "react-router-dom";
+
 import "./i18n";
+import AppRoutes from "./routes";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<UserListPage />} />
-        <Route path="/posts" element={<PostListPage />} />
-        <Route path="/tasks" element={<TaskListPage />} />
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

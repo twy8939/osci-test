@@ -1,3 +1,6 @@
 {
-  "title": "User Management"
+  "title": "User Management",
+  "name": "Name",
+  "email": "Email",
+  "edit": "Edit"
 }

@@ -14,7 +14,7 @@ const SearchBar = ({
   value,
   onChange,
   width = 300,
-  placeholderKey = "search",
+  placeholderKey = "common:search",
 }: SearchBarProps) => {
   const { t } = useTranslation();
   return (
