@@ -1,3 +1,5 @@
 {
-  "search": "검색"
+  "search": "검색",
+  "start_date": "시작일",
+  "end_date": "종료일"
 }

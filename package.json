@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@atlaskit/button": "^20.3.10",
+    "@atlaskit/datetime-picker": "^15.11.1",
     "@atlaskit/dynamic-table": "^17.0.3",
     "@atlaskit/form": "^11.0.2",
     "@atlaskit/icon": "^23.4.1",
     "@atlaskit/page-header": "^11.0.3",
     "@atlaskit/pagination": "^15.0.2",
+    "@atlaskit/primitives": "^13.3.8",
     "@atlaskit/select": "^18.9.3",
     "@atlaskit/skeleton": "^1.0.3",
     "@atlaskit/textfield": "^6.7.2",

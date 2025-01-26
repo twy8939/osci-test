@@ -6,6 +6,8 @@ import dayjs from "dayjs";
 import SearchBar from "../components/SearchBar";
 import { Post } from "../types/post";
 import { useEffect, useState } from "react";
+import DateFilter from "../components/DateFilter";
+import { Flex } from "@atlaskit/primitives";
 
 export default function PostListPage() {
   const { t } = useTranslation("post");
@@ -19,6 +21,19 @@ export default function PostListPage() {
         data?.filter((user) => user.id === selectedItem.id) || []
       );
     else setFilteredPosts(data || []);
+  };
+
+  const handleDateChange = (start: string, end: string) => {
+    if (data) {
+      const filtered = data.filter((post) => {
+        const postDate = dayjs(post.createdAt);
+        return (
+          (!start || postDate.isAfter(start)) &&
+          (!end || postDate.isBefore(end))
+        );
+      });
+      setFilteredPosts(filtered);
+    }
   };
 
   const head = {
@@ -60,12 +75,16 @@ export default function PostListPage() {
   return (
     <div>
       <PageHeader>{t("page_header")}</PageHeader>
-      <SearchBar
-        data={data || []}
-        onSearch={handleSearch}
-        searchKeys={["title"]}
-        placeholderKey="post:search"
-      />
+      <Flex gap={"space.100"}>
+        <SearchBar
+          data={data || []}
+          onSearch={handleSearch}
+          searchKeys={["title"]}
+          placeholderKey="post:search"
+        />
+        <DateFilter onDateChange={handleDateChange} />
+      </Flex>
+
       <Table rows={rows} head={head} isLoading={isLoading} rowsPerPage={10} />
     </div>
   );
