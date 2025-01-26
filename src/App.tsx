@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserListPage from "./pages/UserListPage";
 import PostListPage from "./pages/PostListPage";
 import TaskListPage from "./pages/TaskListPage";
+import "./i18n";
 
 function App() {
   return (

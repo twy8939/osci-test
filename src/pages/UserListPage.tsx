@@ -3,8 +3,11 @@ import { useUsers } from "../hooks/useUsers";
 import PageHeader from "@atlaskit/page-header";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
+import { useTranslation } from "react-i18next";
 
 export default function UserListPage() {
+  const { t } = useTranslation("user");
+
   const [search, setSearch] = useState("");
 
   const { data, isLoading } = useUsers();
@@ -37,7 +40,7 @@ export default function UserListPage() {
 
   return (
     <div>
-      <PageHeader>User Management</PageHeader>
+      <PageHeader>{t("title")}</PageHeader>
       <SearchBar value={search} onChange={handleSearch} />
       <Table rows={rows} head={head} isLoading={isLoading} />
     </div>
