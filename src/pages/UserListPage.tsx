@@ -1,22 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUsers } from "../hooks/useUsers";
 import PageHeader from "@atlaskit/page-header";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { User } from "../types/user";
 
 export default function UserListPage() {
   const { t } = useTranslation("user");
   const navigate = useNavigate();
 
-  const [search, setSearch] = useState("");
-
+  const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const { data, isLoading } = useUsers();
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setSearch(value);
+  const handleSearch = (selectedItem: User | undefined) => {
+    if (selectedItem)
+      setFilteredUsers(
+        data?.filter((user) => user.id === selectedItem.id) || []
+      );
+    else setFilteredUsers(data || []);
   };
 
   const handleRowClick = (id: number) => {
@@ -36,7 +39,7 @@ export default function UserListPage() {
     ],
   };
 
-  const rows = data?.map((user) => ({
+  const rows = filteredUsers.map((user) => ({
     key: user.id.toString(),
     cells: [
       { content: user.name },
@@ -46,10 +49,18 @@ export default function UserListPage() {
     onClick: () => handleRowClick(user.id),
   }));
 
+  useEffect(() => {
+    if (data) setFilteredUsers(data);
+  }, [data]);
+
   return (
     <div>
       <PageHeader>{t("title")}</PageHeader>
-      <SearchBar value={search} onChange={handleSearch} />
+      <SearchBar
+        data={data || []}
+        onSearch={handleSearch}
+        searchKeys={["name", "email"]}
+      />
       <Table rows={rows} head={head} isLoading={isLoading} />
     </div>
   );

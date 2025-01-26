@@ -1,37 +1,55 @@
-import React from "react";
-import Textfield from "@atlaskit/textfield";
-import SearchIcon from "@atlaskit/icon/glyph/search";
 import { useTranslation } from "react-i18next";
+import Select from "@atlaskit/select";
 
-interface SearchBarProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface SearchBarProps<T> {
+  data: T[];
+  onSearch: (selectedItem: T | undefined) => void;
+  searchKeys: (keyof T)[];
   width?: number | string;
   placeholderKey?: string;
 }
 
-const SearchBar = ({
-  value,
-  onChange,
+const SearchBar = <T,>({
+  data,
+  onSearch,
+  searchKeys,
   width = 300,
   placeholderKey = "common:search",
-}: SearchBarProps) => {
+}: SearchBarProps<T>) => {
   const { t } = useTranslation();
+
+  const options = data.map((item) => ({
+    label: searchKeys.map((key) => String(item[key])).join(" - "),
+    value: item,
+  }));
+
+  const handleChange = (selectedItem: T | undefined) => {
+    onSearch(selectedItem);
+  };
+
   return (
-    <Textfield
+    <Select
       width={width}
-      value={value}
-      onChange={onChange}
+      options={options}
+      onChange={(value) => handleChange(value?.value)}
       placeholder={t(placeholderKey)}
-      aria-label={t(placeholderKey)}
-      isCompact
-      inputMode="search"
-      elemAfterInput={
-        <div style={{ marginRight: 6 }}>
-          <SearchIcon label="Search" size="small" />
-        </div>
-      }
+      isClearable
+      defaultValue={null}
     />
+    // <Textfield
+    //   width={width}
+    //   value={query}
+    //   onChange={handleSearch}
+    //   placeholder={t(placeholderKey)}
+    //   aria-label={t(placeholderKey)}
+    //   isCompact
+    //   inputMode="search"
+    //   elemAfterInput={
+    //     <div style={{ marginRight: 6 }}>
+    //       <SearchIcon label="Search" size="small" />
+    //     </div>
+    //   }
+    // />
   );
 };
 
