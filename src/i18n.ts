@@ -7,6 +7,8 @@ import userEN from "./locales/en/user.json";
 import userKO from "./locales/ko/user.json";
 import postEn from "./locales/en/post.json";
 import postKO from "./locales/ko/post.json";
+import todoEn from "./locales/en/todo.json";
+import todoKO from "./locales/ko/todo.json";
 import LanguageDetector from "i18next-browser-languagedetector";
 
 const resources = {
@@ -14,11 +16,13 @@ const resources = {
     common: commonEN,
     user: userEN,
     post: postEn,
+    todo: todoEn,
   },
   ko: {
     common: commonKO,
     user: userKO,
     post: postKO,
+    todo: todoKO,
   },
 };
 

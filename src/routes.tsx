@@ -3,8 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import UserListPage from "./pages/UserListPage";
 import UserDetailPage from "./pages/UserDetailPage";
 import PostListPage from "./pages/PostListPage";
-import TaskListPage from "./pages/TaskListPage";
 import PostDetailPage from "./pages/PostDetailPage";
+import TodoListPage from "./pages/TodoListPage";
 
 const AppRoutes: React.FC = () => (
   <Routes>
@@ -12,7 +12,7 @@ const AppRoutes: React.FC = () => (
     <Route path="/users/:id" element={<UserDetailPage />} />
     <Route path="/posts" element={<PostListPage />} />
     <Route path="/posts/:id" element={<PostDetailPage />} />
-    <Route path="/tasks" element={<TaskListPage />} />
+    <Route path="/todos" element={<TodoListPage />} />
   </Routes>
 );
 
