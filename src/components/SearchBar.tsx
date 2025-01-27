@@ -5,7 +5,6 @@ interface SearchBarProps<T> {
   data: T[];
   onSearch: (selectedItem: T | undefined) => void;
   searchKeys: (keyof T)[];
-  width?: number | string;
   placeholderKey?: string;
 }
 
@@ -13,7 +12,6 @@ const SearchBar = <T,>({
   data,
   onSearch,
   searchKeys,
-  width = 300,
   placeholderKey = "common:search",
 }: SearchBarProps<T>) => {
   const { t } = useTranslation();
@@ -29,7 +27,6 @@ const SearchBar = <T,>({
 
   return (
     <Select
-      width={width}
       options={options}
       onChange={(value) => handleChange(value?.value)}
       placeholder={t(placeholderKey)}

@@ -7,7 +7,7 @@ import SearchBar from "../components/SearchBar";
 import { PostType } from "../types/post";
 import { useEffect, useState } from "react";
 import DateFilter from "../components/DateFilter";
-import { Flex } from "@atlaskit/primitives";
+import { Flex, Stack } from "@atlaskit/primitives";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function PostListPage() {
@@ -81,19 +81,21 @@ export default function PostListPage() {
   }, [data]);
 
   return (
-    <div>
+    <Stack>
       <PageHeader>{t("page_header")}</PageHeader>
-      <Flex gap={"space.100"}>
-        <SearchBar
-          data={data || []}
-          onSearch={handleSearch}
-          searchKeys={["title"]}
-          placeholderKey="post:search"
-        />
-        <DateFilter onDateChange={handleDateChange} />
-      </Flex>
+      <Stack space="space.300">
+        <Flex gap={"space.100"}>
+          <SearchBar
+            data={data || []}
+            onSearch={handleSearch}
+            searchKeys={["title"]}
+            placeholderKey="post:search"
+          />
+          <DateFilter onDateChange={handleDateChange} />
+        </Flex>
 
-      <Table rows={rows} head={head} isLoading={isLoading} rowsPerPage={10} />
-    </div>
+        <Table rows={rows} head={head} isLoading={isLoading} rowsPerPage={10} />
+      </Stack>
+    </Stack>
   );
 }

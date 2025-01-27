@@ -4,12 +4,15 @@ import "./i18n";
 import AppRoutes from "./routes";
 import "@atlaskit/css-reset";
 import Header from "./components/Header";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
-      <AppRoutes />
+      <Layout>
+        <AppRoutes />
+      </Layout>
     </BrowserRouter>
   );
 }

@@ -6,6 +6,7 @@ import Table from "../components/Table";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserType } from "../types/user";
+import { Stack } from "@atlaskit/primitives";
 
 export default function UserListPage() {
   const { t } = useTranslation("user");
@@ -55,14 +56,17 @@ export default function UserListPage() {
   }, [data]);
 
   return (
-    <div>
+    <Stack>
       <PageHeader>{t("page_header")}</PageHeader>
-      <SearchBar
-        data={data || []}
-        onSearch={handleSearch}
-        searchKeys={["name", "email"]}
-      />
-      <Table rows={rows} head={head} isLoading={isLoading} />
-    </div>
+      <Stack space="space.300">
+        <SearchBar
+          data={data || []}
+          onSearch={handleSearch}
+          searchKeys={["name", "email"]}
+        />
+
+        <Table rows={rows} head={head} isLoading={isLoading} />
+      </Stack>
+    </Stack>
   );
 }
