@@ -4,18 +4,20 @@ import { usePosts } from "../hooks/usePosts";
 import Table from "../components/Table";
 import dayjs from "dayjs";
 import SearchBar from "../components/SearchBar";
-import { Post } from "../types/post";
+import { PostType } from "../types/post";
 import { useEffect, useState } from "react";
 import DateFilter from "../components/DateFilter";
 import { Flex } from "@atlaskit/primitives";
+import { useNavigate } from "react-router-dom";
 
 export default function PostListPage() {
   const { t } = useTranslation("post");
+  const navigate = useNavigate();
 
-  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<PostType[]>([]);
   const { data, isLoading } = usePosts();
 
-  const handleSearch = (selectedItem: Post | undefined) => {
+  const handleSearch = (selectedItem: PostType | undefined) => {
     if (selectedItem)
       setFilteredPosts(
         data?.filter((user) => user.id === selectedItem.id) || []
@@ -34,6 +36,10 @@ export default function PostListPage() {
       });
       setFilteredPosts(filtered);
     }
+  };
+
+  const handleRowClick = (id: number) => {
+    navigate(`/posts/${id}`);
   };
 
   const head = {
@@ -66,6 +72,7 @@ export default function PostListPage() {
       { content: dayjs(post.createdAt).format("YYYY-MM-DD HH:mm:ss") },
     ],
     style: { cursor: "pointer", height: "50px" },
+    onClick: () => handleRowClick(post.id),
   }));
 
   useEffect(() => {

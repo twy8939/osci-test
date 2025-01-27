@@ -4,7 +4,7 @@ import Textfield from "@atlaskit/textfield";
 import { useTranslation } from "react-i18next";
 import { useUserDetail } from "../hooks/useUserDetail";
 import { useParams } from "react-router-dom";
-import Button from "@atlaskit/button";
+import Button from "@atlaskit/button/new";
 
 export default function UserDetailPage() {
   const { id } = useParams<{ id: string }>();

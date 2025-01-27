@@ -1,5 +1,8 @@
 {
   "search": "검색",
   "start_date": "시작일",
-  "end_date": "종료일"
+  "end_date": "종료일",
+  "edit": "수정",
+  "delete": "삭제",
+  "comments": "댓글"
 }

@@ -1,5 +1,8 @@
 {
   "search": "Search",
   "start_date": "Start Date",
-  "end_date": "End Date"
+  "end_date": "End Date",
+  "edit": "Edit",
+  "delete": "Delete",
+  "comments": "Comments"
 }
