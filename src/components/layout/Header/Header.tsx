@@ -6,7 +6,7 @@ import {
   ProductHome,
 } from "@atlaskit/atlassian-navigation";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "./LanguageSwitcher";
+import LanguageSwitcher from "../../common/LanguageSwitcher/LanguageSwitcher";
 
 const AtlassianProductHome = () => (
   <ProductHome href="/" icon={AtlassianIcon} logo={AtlassianLogo} />

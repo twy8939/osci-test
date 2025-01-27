@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useUsers } from "../hooks/useUsers";
 import PageHeader from "@atlaskit/page-header";
-import SearchBar from "../components/SearchBar";
-import Table from "../components/Table";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import { UserType } from "../types/user";
 import { Stack } from "@atlaskit/primitives";
+import { UserType } from "../../types/user";
+import { useUsers } from "../../hooks/user/useUsers";
+import SearchBar from "../../components/common/Filter/SearchBar";
+import Table from "../../components/common/Table/Table";
 
 export default function UserListPage() {
   const { t } = useTranslation("user");

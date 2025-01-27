@@ -1,10 +1,11 @@
 import PageHeader from "@atlaskit/page-header";
 import { useTranslation } from "react-i18next";
-import { useTodos } from "../hooks/useTodos";
-import Table from "../components/Table";
+
 import CheckCircleIcon from "@atlaskit/icon/glyph/check-circle";
 import CrossCircleIcon from "@atlaskit/icon/glyph/cross-circle";
 import { Flex } from "@atlaskit/primitives";
+import { useTodos } from "../../hooks/todo/useTodos";
+import Table from "../../components/common/Table/Table";
 
 export default function TodoListPage() {
   const { t } = useTranslation("todo");

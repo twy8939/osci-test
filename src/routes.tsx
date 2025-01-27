@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import UserListPage from "./pages/UserListPage";
-import UserDetailPage from "./pages/UserDetailPage";
-import PostListPage from "./pages/PostListPage";
-import PostDetailPage from "./pages/PostDetailPage";
-import TodoListPage from "./pages/TodoListPage";
+import UserListPage from "./pages/user/UserListPage";
+import UserDetailPage from "./pages/user/UserDetailPage";
+import PostListPage from "./pages/post/PostListPage";
+import PostDetailPage from "./pages/post/PostDetailPage";
+import TodoListPage from "./pages/todo/TodoListPage";
 
 const AppRoutes: React.FC = () => (
   <Routes>

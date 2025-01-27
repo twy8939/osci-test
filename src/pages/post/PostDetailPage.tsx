@@ -1,13 +1,13 @@
 import PageHeader from "@atlaskit/page-header";
 import { useTranslation } from "react-i18next";
-import { usePostDetail } from "../hooks/usePostDetail";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
-import { usePostComments } from "../hooks/usePostComments";
-import CommentList from "../components/CommentList";
 import { Flex, Stack, Text } from "@atlaskit/primitives";
-import EditButton from "../components/EditButton";
-import DeleteButton from "../components/DeleteButton";
+import { usePostDetail } from "../../hooks/post/usePostDetail";
+import { usePostComments } from "../../hooks/comment/usePostComments";
+import EditButton from "../../components/common/Button/EditButton";
+import DeleteButton from "../../components/common/Button/DeleteButton";
+import CommentList from "../../components/features/comment/CommentList";
 
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();

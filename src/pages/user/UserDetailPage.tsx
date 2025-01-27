@@ -2,9 +2,9 @@ import Form, { Field, FormFooter } from "@atlaskit/form";
 import PageHeader from "@atlaskit/page-header";
 import Textfield from "@atlaskit/textfield";
 import { useTranslation } from "react-i18next";
-import { useUserDetail } from "../hooks/useUserDetail";
 import { useParams } from "react-router-dom";
 import Button from "@atlaskit/button/new";
+import { useUserDetail } from "../../hooks/user/useUserDetail";
 
 export default function UserDetailPage() {
   const { id } = useParams<{ id: string }>();

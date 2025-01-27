@@ -1,14 +1,14 @@
 import PageHeader from "@atlaskit/page-header";
 import { useTranslation } from "react-i18next";
-import { usePosts } from "../hooks/usePosts";
-import Table from "../components/Table";
 import dayjs from "dayjs";
-import SearchBar from "../components/SearchBar";
-import { PostType } from "../types/post";
 import { useEffect, useState } from "react";
-import DateFilter from "../components/DateFilter";
 import { Flex, Stack } from "@atlaskit/primitives";
 import { useLocation, useNavigate } from "react-router-dom";
+import { usePosts } from "../../hooks/post/usePosts";
+import { PostType } from "../../types/post";
+import SearchBar from "../../components/common/Filter/SearchBar";
+import DateFilter from "../../components/common/Filter/DateFilter";
+import Table from "../../components/common/Table/Table";
 
 export default function PostListPage() {
   const { t } = useTranslation("post");

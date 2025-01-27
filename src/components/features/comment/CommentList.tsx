@@ -5,9 +5,9 @@ import Comment, {
 } from "@atlaskit/comment";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
-import { CommentType } from "../types/comment";
 import Avatar from "@atlaskit/avatar";
 import { Stack, Text } from "@atlaskit/primitives";
+import { CommentType } from "../../../types/comment";
 
 const CommentList = ({ comments }: { comments: CommentType[] }) => {
   const { t } = useTranslation();
