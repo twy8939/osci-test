@@ -4,5 +4,8 @@
   "end_date": "종료일",
   "edit": "수정",
   "delete": "삭제",
-  "comments": "댓글"
+  "comments": "댓글",
+  "language": "언어",
+  "language_en": "영어",
+  "language_ko": "한국어"
 }

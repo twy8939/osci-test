@@ -4,17 +4,18 @@ import PageHeader from "@atlaskit/page-header";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { User } from "../types/user";
+import { useLocation, useNavigate } from "react-router-dom";
+import { UserType } from "../types/user";
 
 export default function UserListPage() {
   const { t } = useTranslation("user");
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<UserType[]>([]);
   const { data, isLoading } = useUsers();
 
-  const handleSearch = (selectedItem: User | undefined) => {
+  const handleSearch = (selectedItem: UserType | undefined) => {
     if (selectedItem)
       setFilteredUsers(
         data?.filter((user) => user.id === selectedItem.id) || []
@@ -23,7 +24,7 @@ export default function UserListPage() {
   };
 
   const handleRowClick = (id: number) => {
-    navigate(`/users/${id}`);
+    navigate(`${location.pathname}/${id}`);
   };
 
   const head = {

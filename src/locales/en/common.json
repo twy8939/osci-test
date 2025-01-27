@@ -4,5 +4,8 @@
   "end_date": "End Date",
   "edit": "Edit",
   "delete": "Delete",
-  "comments": "Comments"
+  "comments": "Comments",
+  "language": "Language",
+  "language_en": "English",
+  "language_ko": "Korean"
 }

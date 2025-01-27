@@ -8,11 +8,11 @@ import TodoListPage from "./pages/TodoListPage";
 
 const AppRoutes: React.FC = () => (
   <Routes>
-    <Route path="/users" element={<UserListPage />} />
-    <Route path="/users/:id" element={<UserDetailPage />} />
-    <Route path="/posts" element={<PostListPage />} />
-    <Route path="/posts/:id" element={<PostDetailPage />} />
-    <Route path="/todos" element={<TodoListPage />} />
+    <Route path="/user" element={<UserListPage />} />
+    <Route path="/user/:id" element={<UserDetailPage />} />
+    <Route path="/post" element={<PostListPage />} />
+    <Route path="/post/:id" element={<PostDetailPage />} />
+    <Route path="/todo" element={<TodoListPage />} />
   </Routes>
 );
 

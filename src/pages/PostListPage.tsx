@@ -8,11 +8,12 @@ import { PostType } from "../types/post";
 import { useEffect, useState } from "react";
 import DateFilter from "../components/DateFilter";
 import { Flex } from "@atlaskit/primitives";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function PostListPage() {
   const { t } = useTranslation("post");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [filteredPosts, setFilteredPosts] = useState<PostType[]>([]);
   const { data, isLoading } = usePosts();
@@ -39,7 +40,7 @@ export default function PostListPage() {
   };
 
   const handleRowClick = (id: number) => {
-    navigate(`/posts/${id}`);
+    navigate(`${location.pathname}/${id}`);
   };
 
   const head = {
