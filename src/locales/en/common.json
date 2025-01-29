@@ -5,7 +5,12 @@
   "edit": "Edit",
   "delete": "Delete",
   "comments": "Comments",
+  "comment_placeholder": "Write a comment",
+  "comment_add": "Add Comment",
   "language": "Language",
   "language_en": "English",
-  "language_ko": "Korean"
+  "language_ko": "Korean",
+  "no_data": "No data",
+  "no_results": "No results found",
+  "no_comments": "No comments"
 }

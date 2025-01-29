@@ -1,6 +1,10 @@
 import React from "react";
 import DynamicTable from "@atlaskit/dynamic-table";
 import { HeadType, RowType } from "@atlaskit/dynamic-table/dist/types/types";
+import EmptyState from "@atlaskit/empty-state";
+import SearchIcon from "@atlaskit/icon/glyph/search";
+import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
 interface TableProps {
   rows?: RowType[];
@@ -15,6 +19,9 @@ const Table: React.FC<TableProps> = ({
   isLoading = false,
   rowsPerPage = undefined,
 }) => {
+  const [searchParams] = useSearchParams();
+  const { t } = useTranslation("common");
+
   return (
     <DynamicTable
       rows={rows || []}
@@ -22,6 +29,16 @@ const Table: React.FC<TableProps> = ({
       isLoading={isLoading}
       rowsPerPage={rowsPerPage}
       defaultPage={rowsPerPage && 1}
+      emptyView={
+        searchParams.size > 0 ? (
+          <EmptyState
+            header={t("no_results")}
+            renderImage={() => <SearchIcon label="search" />}
+          />
+        ) : (
+          <EmptyState header={t("no_data")} />
+        )
+      }
     />
   );
 };

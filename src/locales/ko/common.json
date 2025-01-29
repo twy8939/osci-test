@@ -5,7 +5,12 @@
   "edit": "수정",
   "delete": "삭제",
   "comments": "댓글",
+  "comment_placeholder": "댓글을 작성해주세요.",
+  "comment_add": "댓글 추가",
   "language": "언어",
   "language_en": "영어",
-  "language_ko": "한국어"
+  "language_ko": "한국어",
+  "no_data": "데이터가 없습니다.",
+  "no_results": "검색 결과가 없습니다.",
+  "no_comments": "댓글이 없습니다."
 }
