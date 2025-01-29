@@ -3,14 +3,18 @@ import { useTranslation } from "react-i18next";
 
 import CheckCircleIcon from "@atlaskit/icon/glyph/check-circle";
 import CrossCircleIcon from "@atlaskit/icon/glyph/cross-circle";
-import { Flex } from "@atlaskit/primitives";
+import { Flex, Stack } from "@atlaskit/primitives";
 import { useTodos } from "../../hooks/todo/useTodos";
 import Table from "../../components/common/Table/Table";
+import SearchBar from "../../components/common/Filter/SearchBar";
+import { TodoType } from "../../types/todo";
 
 export default function TodoListPage() {
   const { t } = useTranslation("todo");
 
-  const { data, isLoading } = useTodos();
+  const searchKeys: (keyof TodoType)[] = ["title"];
+
+  const { data, isLoading } = useTodos({ searchKeys });
 
   const head = {
     cells: [
@@ -36,24 +40,34 @@ export default function TodoListPage() {
         key: "completed",
         content: todo.completed ? (
           <Flex gap="space.100" alignItems="center">
-            <CheckCircleIcon label={t("completed")} />
+            <CheckCircleIcon primaryColor="green" label={t("completed")} />
             {t("completed")}
           </Flex>
         ) : (
           <Flex gap="space.100" alignItems="center">
-            <CrossCircleIcon label={t("notCompleted")} />
+            <CrossCircleIcon primaryColor="red" label={t("notCompleted")} />
             {t("notCompleted")}
           </Flex>
         ),
       },
     ],
+    style: { height: "50px" },
   }));
 
   return (
-    <div>
+    <Stack>
       <PageHeader>{t("page_header")}</PageHeader>
+      <Stack space="space.300">
+        <Flex gap="space.100">
+          <SearchBar
+            data={data || []}
+            searchKeys={searchKeys}
+            placeholderKey="todo:search"
+          />
+        </Flex>
 
-      <Table rows={rows} head={head} isLoading={isLoading} />
-    </div>
+        <Table rows={rows} head={head} isLoading={isLoading} />
+      </Stack>
+    </Stack>
   );
 }

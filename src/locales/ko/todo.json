@@ -3,5 +3,6 @@
   "title": "해야할 일",
   "status": "상태",
   "completed": "완료됨",
-  "notCompleted": "미완료"
+  "notCompleted": "미완료",
+  "search": "해야할 일을 검색해주세요."
 }

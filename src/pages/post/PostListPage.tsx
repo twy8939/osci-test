@@ -1,43 +1,22 @@
 import PageHeader from "@atlaskit/page-header";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
 import { Flex, Stack } from "@atlaskit/primitives";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePosts } from "../../hooks/post/usePosts";
-import { PostType } from "../../types/post";
 import SearchBar from "../../components/common/Filter/SearchBar";
 import DateFilter from "../../components/common/Filter/DateFilter";
 import Table from "../../components/common/Table/Table";
+import { PostType } from "../../types/post";
 
 export default function PostListPage() {
   const { t } = useTranslation("post");
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [filteredPosts, setFilteredPosts] = useState<PostType[]>([]);
-  const { data, isLoading } = usePosts();
+  const searchKeys: (keyof PostType)[] = ["title"];
 
-  const handleSearch = (selectedItem: PostType | undefined) => {
-    if (selectedItem)
-      setFilteredPosts(
-        data?.filter((user) => user.id === selectedItem.id) || []
-      );
-    else setFilteredPosts(data || []);
-  };
-
-  const handleDateChange = (start: string, end: string) => {
-    if (data) {
-      const filtered = data.filter((post) => {
-        const postDate = dayjs(post.createdAt);
-        return (
-          (!start || postDate.isAfter(start)) &&
-          (!end || postDate.isBefore(end))
-        );
-      });
-      setFilteredPosts(filtered);
-    }
-  };
+  const { data, isLoading } = usePosts({ searchKeys });
 
   const handleRowClick = (id: number) => {
     navigate(`${location.pathname}/${id}`);
@@ -64,7 +43,7 @@ export default function PostListPage() {
     ],
   };
 
-  const rows = filteredPosts.map((post) => ({
+  const rows = data?.map((post) => ({
     key: post.id.toString(),
     cells: [
       { content: post.id },
@@ -76,10 +55,6 @@ export default function PostListPage() {
     onClick: () => handleRowClick(post.id),
   }));
 
-  useEffect(() => {
-    if (data) setFilteredPosts(data);
-  }, [data]);
-
   return (
     <Stack>
       <PageHeader>{t("page_header")}</PageHeader>
@@ -87,11 +62,10 @@ export default function PostListPage() {
         <Flex gap={"space.100"}>
           <SearchBar
             data={data || []}
-            onSearch={handleSearch}
-            searchKeys={["title"]}
+            searchKeys={searchKeys}
             placeholderKey="post:search"
           />
-          <DateFilter onDateChange={handleDateChange} />
+          <DateFilter />
         </Flex>
 
         <Table rows={rows} head={head} isLoading={isLoading} rowsPerPage={10} />

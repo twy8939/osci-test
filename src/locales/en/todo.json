@@ -3,5 +3,6 @@
   "title": "Title",
   "status": "Status",
   "completed": "Completed",
-  "notCompleted": "Not Completed"
+  "notCompleted": "Not Completed",
+  "search": "Search for todos"
 }
