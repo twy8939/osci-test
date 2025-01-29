@@ -1,4 +1,3 @@
-import React from "react";
 import { useUserDetail } from "../../../hooks/user/useUserDetail";
 import { Flex, Stack, Text } from "@atlaskit/primitives";
 import Avatar from "@atlaskit/avatar";

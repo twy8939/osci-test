@@ -5,6 +5,7 @@ import EmptyState from "@atlaskit/empty-state";
 import SearchIcon from "@atlaskit/icon/glyph/search";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
+import { Box, xcss } from "@atlaskit/primitives";
 
 interface TableProps {
   rows?: RowType[];
@@ -22,6 +23,10 @@ const Table: React.FC<TableProps> = ({
   const [searchParams] = useSearchParams();
   const { t } = useTranslation("common");
 
+  const someStyles = xcss({
+    marginBottom: "space.100",
+  });
+
   return (
     <DynamicTable
       rows={rows || []}
@@ -33,7 +38,11 @@ const Table: React.FC<TableProps> = ({
         searchParams.size > 0 ? (
           <EmptyState
             header={t("no_results")}
-            renderImage={() => <SearchIcon label="search" />}
+            renderImage={() => (
+              <Box xcss={someStyles}>
+                <SearchIcon label="search" />
+              </Box>
+            )}
           />
         ) : (
           <EmptyState header={t("no_data")} />

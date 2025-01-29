@@ -4,22 +4,47 @@ import Textfield from "@atlaskit/textfield";
 import { DropdownItem, DropdownItemGroup } from "@atlaskit/dropdown-menu";
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { Box, xcss } from "@atlaskit/primitives";
 
 interface SearchBarProps<T> {
   data: T[];
   searchKeys: (keyof T)[];
   placeholderKey?: string;
-  width?: string | number;
-  height?: string | number;
+  width?: string;
+  height?: string;
 }
 
 const SearchBar = <T,>({
   data,
   searchKeys,
   placeholderKey = "common:search",
-  width = 400,
-  height = 36,
+  width = "400px",
+  height = "36px",
 }: SearchBarProps<T>) => {
+  const warperStyle = xcss({
+    position: "relative",
+    width,
+  });
+
+  const autoCompleteStyle = xcss({
+    position: "absolute",
+    zIndex: "dialog",
+    background: "white",
+    boxShadow: "elevation.shadow.overflow",
+    borderRadius: "4px",
+    maxHeight: "200px",
+    overflowY: "auto",
+    width,
+  });
+
+  const searchStyle = xcss({
+    height,
+    cursor: "pointer",
+    width: "30px",
+    display: "flex",
+    alignItems: "center",
+  });
+
   const { t } = useTranslation();
 
   const location = useLocation();
@@ -74,7 +99,7 @@ const SearchBar = <T,>({
   };
 
   return (
-    <div style={{ position: "relative", width }}>
+    <Box xcss={warperStyle}>
       <Textfield
         value={query}
         onChange={handleInputChange}
@@ -86,35 +111,14 @@ const SearchBar = <T,>({
         isCompact
         inputMode="search"
         elemAfterInput={
-          <div
-            style={{
-              height,
-              cursor: "pointer",
-              width: 30,
-              display: "flex",
-              alignItems: "center",
-            }}
-            onClick={handleSearch}
-          >
+          <Box onClick={handleSearch} xcss={searchStyle}>
             <SearchIcon label="Search" size="small" />
-          </div>
+          </Box>
         }
       />
 
       {isOpen && autoCompleteList.length > 0 && (
-        <div
-          style={{
-            position: "absolute",
-            zIndex: 99,
-            background: "white",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-            borderRadius: 4,
-            maxHeight: 200,
-            overflowY: "auto",
-            width,
-          }}
-          onMouseDown={handleDropdownMouseDown}
-        >
+        <Box onMouseDown={handleDropdownMouseDown} xcss={autoCompleteStyle}>
           <DropdownItemGroup>
             {autoCompleteList.map((item, index) => (
               <DropdownItem onClick={() => handleItemClick(item)} key={index}>
@@ -122,9 +126,9 @@ const SearchBar = <T,>({
               </DropdownItem>
             ))}
           </DropdownItemGroup>
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

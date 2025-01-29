@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
-import { Flex, Stack, Text } from "@atlaskit/primitives";
+import { Box, Flex, Stack, Text, xcss } from "@atlaskit/primitives";
 import { usePostDetail } from "../../hooks/post/usePostDetail";
 import { usePostComments } from "../../hooks/comment/usePostComments";
 import EditButton from "../../components/common/Button/EditButton";
@@ -9,6 +9,10 @@ import DeleteButton from "../../components/common/Button/DeleteButton";
 import CommentList from "../../components/features/comment/CommentList";
 import Heading from "@atlaskit/heading";
 import UserProfile from "../../components/features/profile/UserProfile";
+
+const someStyles = xcss({
+  marginTop: "space.400",
+});
 
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +27,7 @@ export default function PostDetailPage() {
   }
 
   return (
-    <div style={{ marginTop: "32px" }}>
+    <Box xcss={someStyles}>
       <Stack space="space.300">
         <Flex justifyContent="space-between" alignItems="center">
           <Stack space="space.200">
@@ -51,6 +55,6 @@ export default function PostDetailPage() {
           <CommentList comments={comments || []} />
         </Stack>
       </Stack>
-    </div>
+    </Box>
   );
 }
