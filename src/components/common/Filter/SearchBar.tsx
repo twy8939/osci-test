@@ -110,8 +110,8 @@ const SearchBar = <T,>({
     <Box xcss={warperStyles}>
       <Box xcss={textFieldStyles}>
         <Textfield
-          appearance="subtle"
-          style={{ padding: "12px" }}
+          appearance="none"
+          style={{ padding: "16px 12px" }}
           value={query}
           onChange={handleInputChange}
           onClick={handleDropdownClick}

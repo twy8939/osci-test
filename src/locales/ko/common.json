@@ -13,5 +13,6 @@
   "date_locale": "ko-KR",
   "no_data": "데이터가 없습니다.",
   "no_results": "검색 결과가 없습니다.",
-  "no_comments": "댓글이 없습니다."
+  "no_comments": "댓글이 없습니다.",
+  "all": "전체"
 }

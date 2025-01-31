@@ -8,6 +8,7 @@ import { useTodos } from "../../hooks/todo/useTodos";
 import Table from "../../components/common/Table/Table";
 import SearchBar from "../../components/common/Filter/SearchBar";
 import { TodoType } from "../../types/todo";
+import SelectFilter from "../../components/common/Filter/SelectFilter";
 
 export default function TodoListPage() {
   const { t } = useTranslation("todo");
@@ -58,13 +59,22 @@ export default function TodoListPage() {
     <Stack>
       <PageHeader>{t("page_header")}</PageHeader>
       <Stack space="space.300">
-        <Flex gap="space.100">
+        <Stack space={"space.200"}>
           <SearchBar
             data={data || []}
             searchKeys={searchKeys}
             placeholderKey="todo:search"
           />
-        </Flex>
+          <SelectFilter
+            filterKey="status"
+            label={t("status")}
+            options={[
+              { label: t("completed"), value: "completed" },
+              { label: t("notCompleted"), value: "notCompleted" },
+            ]}
+            isAll
+          />
+        </Stack>
 
         <Table rows={rows} head={head} isLoading={isLoading} />
       </Stack>

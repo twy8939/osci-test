@@ -9,7 +9,8 @@ export const useTodos = ({
   searchKeys: (keyof TodoType)[];
 }) => {
   const [searchParams] = useSearchParams();
-  const search = searchParams.get("search") || "";
+  const search = searchParams.get("search");
+  const status = searchParams.get("status");
 
   const { data, ...queryState } = useQuery({
     queryKey: ["todos"],
@@ -22,6 +23,13 @@ export const useTodos = ({
           searchKeys.some((key) =>
             post[key].toString().toLowerCase().includes(search.toLowerCase())
           )
+        );
+      }
+
+      if (status) {
+        const isCompleted = status === "completed" ? true : false;
+        filteredData = filteredData.filter(
+          (post) => post.completed === isCompleted
         );
       }
 
