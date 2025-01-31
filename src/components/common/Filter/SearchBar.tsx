@@ -18,15 +18,23 @@ const SearchBar = <T,>({
   data,
   searchKeys,
   placeholderKey = "common:search",
-  width = "400px",
+  width = "100%",
   height = "36px",
 }: SearchBarProps<T>) => {
-  const warperStyle = xcss({
+  const warperStyles = xcss({
     position: "relative",
     width,
   });
 
-  const autoCompleteStyle = xcss({
+  const textFieldStyles = xcss({
+    border: "2px solid #ddd",
+    borderRadius: "8px",
+    fontSize: "14px",
+    width: "100%",
+    outline: "none",
+  });
+
+  const autoCompleteStyles = xcss({
     position: "absolute",
     zIndex: "dialog",
     background: "white",
@@ -37,7 +45,7 @@ const SearchBar = <T,>({
     width,
   });
 
-  const searchStyle = xcss({
+  const searchIconStyles = xcss({
     height,
     cursor: "pointer",
     width: "30px",
@@ -99,26 +107,30 @@ const SearchBar = <T,>({
   };
 
   return (
-    <Box xcss={warperStyle}>
-      <Textfield
-        value={query}
-        onChange={handleInputChange}
-        onClick={handleDropdownClick}
-        onBlur={() => setIsOpen(false)}
-        onKeyDown={handleKeyDown}
-        placeholder={t(placeholderKey)}
-        aria-label={t(placeholderKey)}
-        isCompact
-        inputMode="search"
-        elemAfterInput={
-          <Box onClick={handleSearch} xcss={searchStyle}>
-            <SearchIcon label="Search" size="small" />
-          </Box>
-        }
-      />
+    <Box xcss={warperStyles}>
+      <Box xcss={textFieldStyles}>
+        <Textfield
+          appearance="subtle"
+          style={{ padding: "12px" }}
+          value={query}
+          onChange={handleInputChange}
+          onClick={handleDropdownClick}
+          onBlur={() => setIsOpen(false)}
+          onKeyDown={handleKeyDown}
+          placeholder={t(placeholderKey)}
+          aria-label={t(placeholderKey)}
+          isCompact
+          inputMode="search"
+          elemAfterInput={
+            <Box onClick={handleSearch} xcss={searchIconStyles}>
+              <SearchIcon label="Search" size="small" />
+            </Box>
+          }
+        />
+      </Box>
 
       {isOpen && autoCompleteList.length > 0 && (
-        <Box onMouseDown={handleDropdownMouseDown} xcss={autoCompleteStyle}>
+        <Box onMouseDown={handleDropdownMouseDown} xcss={autoCompleteStyles}>
           <DropdownItemGroup>
             {autoCompleteList.map((item, index) => (
               <DropdownItem onClick={() => handleItemClick(item)} key={index}>

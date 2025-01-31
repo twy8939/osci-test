@@ -1,11 +1,18 @@
 import { DatePicker } from "@atlaskit/datetime-picker";
-import { Flex } from "@atlaskit/primitives";
+import { Box, Flex, xcss } from "@atlaskit/primitives";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
-const DateFilter = () => {
-  const { t } = useTranslation();
+const datePickerStyles = xcss({
+  border: "2px solid #ddd",
+  borderRadius: "8px",
+  fontSize: "14px",
+  width: "180px",
+});
+
+const RangeDateFilter = () => {
+  const { t, i18n } = useTranslation("common");
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,20 +48,31 @@ const DateFilter = () => {
 
   return (
     <Flex gap="space.100">
-      <DatePicker
-        placeholder={t("common:start_date")}
-        value={startDate}
-        onChange={handleStartDateChange}
-        maxDate={endDate}
-      />
-      <DatePicker
-        placeholder={t("common:end_date")}
-        value={endDate}
-        onChange={handleEndDateChange}
-        minDate={startDate}
-      />
+      <Box xcss={datePickerStyles}>
+        <DatePicker
+          appearance="none"
+          placeholder={t("start_date")}
+          value={startDate}
+          onChange={handleStartDateChange}
+          maxDate={endDate}
+          dateFormat="YYYY-MM-DD"
+          locale={i18n.language}
+        />
+      </Box>
+
+      <Box xcss={datePickerStyles}>
+        <DatePicker
+          appearance="none"
+          placeholder={t("end_date")}
+          value={endDate}
+          onChange={handleEndDateChange}
+          minDate={startDate}
+          dateFormat="YYYY-MM-DD"
+          locale={t("date_locale")}
+        />
+      </Box>
     </Flex>
   );
 };
 
-export default DateFilter;
+export default RangeDateFilter;

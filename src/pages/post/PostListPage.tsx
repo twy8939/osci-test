@@ -1,13 +1,13 @@
 import PageHeader from "@atlaskit/page-header";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
-import { Flex, Stack } from "@atlaskit/primitives";
+import { Stack } from "@atlaskit/primitives";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePosts } from "../../hooks/post/usePosts";
 import SearchBar from "../../components/common/Filter/SearchBar";
-import DateFilter from "../../components/common/Filter/DateFilter";
 import Table from "../../components/common/Table/Table";
 import { PostType } from "../../types/post";
+import RangeDateFilter from "../../components/common/Filter/RangeDateFilter";
 
 export default function PostListPage() {
   const { t } = useTranslation("post");
@@ -59,16 +59,16 @@ export default function PostListPage() {
     <Stack>
       <PageHeader>{t("page_header")}</PageHeader>
       <Stack space="space.300">
-        <Flex gap={"space.100"}>
+        <Stack space={"space.200"}>
           <SearchBar
             data={data || []}
             searchKeys={searchKeys}
             placeholderKey="post:search"
           />
-          <DateFilter />
-        </Flex>
+          <RangeDateFilter />
+        </Stack>
 
-        <Table rows={rows} head={head} isLoading={isLoading} rowsPerPage={10} />
+        <Table rows={rows} head={head} isLoading={isLoading} isPaginated />
       </Stack>
     </Stack>
   );
