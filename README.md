@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+# 오픈소스컨설팅 프론트엔드 개발자 과제
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+이 프로젝트는 API와 Atlassian Design System을 사용하여 사용자 인터페이스를 개발하고 데이터를 시각화하는 웹 애플리케이션입니다.
 
-Currently, two official plugins are available:
+## 사용 기술
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: 사용자 인터페이스(UI)를 구축하기 위한 라이브러리
+- **TypeScript**: 정적 타입 시스템을 활용하여 안전하고 유지보수 가능한 코드를 작성
+- **Atlaskit**: Atlassian Design System을 기반으로 한 UI 컴포넌트 라이브러리
+- **i18next**: 다국어 지원을 위한 라이브러리
+- **Vite**: 빠르고 효율적인 빌드 도구
 
-## Expanding the ESLint configuration
+## 설치 방법
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. **프로젝트 클론**
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+  git clone https://github.com/twy8939/osci-test.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. **의존성 설치**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+프로젝트 디렉토리로 이동한 후, 필요한 의존성을 설치합니다.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+  cd osci-test
+  npm install
 ```
+
+3. **환경 변수 설정**
+
+프로젝트에는 .env.example 파일이 포함되어 있습니다.
+이 파일을 참고하여 .env 파일을 생성하고 필요한 환경 변수를 설정하세요.
+
+```bash
+  cp .env.example .env
+```
+
+4. **개발 서버 실행**
+
+프로젝트의 개발 서버를 실행합니다.
+
+```bash
+  npm run dev
+```
+
+개발 서버는 기본적으로 http://localhost:5173 에서 실행됩니다.
+브라우저에서 해당 URL을 열어 애플리케이션을 확인할 수 있습니다.
+
+5. **프로젝트 빌드**
+
+프로덕션용 빌드를 생성하려면 다음 명령어를 사용하세요.
+
+```bash
+  npm run build
+```
+
+빌드 결과물은 dist 폴더에 생성됩니다.
