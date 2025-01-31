@@ -4,13 +4,13 @@ import Textfield from "@atlaskit/textfield";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import Button from "@atlaskit/button/new";
-import { useUserDetail } from "../../hooks/user/useUserDetail";
+import { useFetchUserDetail } from "../../hooks/user/useFetchUserDetail";
 
 export default function UserDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation("user");
 
-  const { data: user } = useUserDetail(id ?? "");
+  const { data: user } = useFetchUserDetail(id ?? "");
 
   if (!user) {
     return null;

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchTodos } from "../../api/todoApi";
 import { TodoType } from "../../types/todo";
 
-export const useTodos = ({
+export const useFetchTodos = ({
   searchKeys,
 }: {
   searchKeys: (keyof TodoType)[];
@@ -19,9 +19,9 @@ export const useTodos = ({
       let filteredData = data;
 
       if (search) {
-        filteredData = filteredData.filter((post) =>
+        filteredData = filteredData.filter((todo) =>
           searchKeys.some((key) =>
-            post[key].toString().toLowerCase().includes(search.toLowerCase())
+            todo[key].toString().toLowerCase().includes(search.toLowerCase())
           )
         );
       }
@@ -29,7 +29,7 @@ export const useTodos = ({
       if (status) {
         const isCompleted = status === "completed" ? true : false;
         filteredData = filteredData.filter(
-          (post) => post.completed === isCompleted
+          (todo) => todo.completed === isCompleted
         );
       }
 

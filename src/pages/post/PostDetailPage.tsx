@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { Box, Flex, Stack, Text, xcss } from "@atlaskit/primitives";
-import { usePostDetail } from "../../hooks/post/usePostDetail";
-import { usePostComments } from "../../hooks/comment/usePostComments";
+import { useFetchPostDetail } from "../../hooks/post/useFetchPostDetail";
+import { useFetchPostComments } from "../../hooks/comment/useFetchPostComments";
 import EditButton from "../../components/common/Button/EditButton";
 import DeleteButton from "../../components/common/Button/DeleteButton";
 import CommentList from "../../components/features/comment/CommentList";
@@ -18,9 +18,9 @@ export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation("post");
 
-  const { data: post } = usePostDetail(id ?? "");
+  const { data: post } = useFetchPostDetail(id ?? "");
 
-  const { data: comments } = usePostComments(id ?? "");
+  const { data: comments } = useFetchPostComments(id ?? "");
 
   if (!post) {
     return null;

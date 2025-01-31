@@ -4,7 +4,7 @@ import { fetchPosts } from "../../api/postApi";
 import dayjs from "dayjs";
 import { PostType } from "../../types/post";
 
-export const usePosts = ({
+export const useFetchPosts = ({
   searchKeys,
 }: {
   searchKeys: (keyof PostType)[];

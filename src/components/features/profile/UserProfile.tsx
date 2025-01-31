@@ -1,9 +1,9 @@
-import { useUserDetail } from "../../../hooks/user/useUserDetail";
+import { useFetchUserDetail } from "../../../hooks/user/useFetchUserDetail";
 import { Flex, Stack, Text } from "@atlaskit/primitives";
 import Avatar from "@atlaskit/avatar";
 
 const UserProfile = ({ userId }: { userId: string }) => {
-  const { data: user } = useUserDetail(userId);
+  const { data: user } = useFetchUserDetail(userId);
   return (
     <Flex gap="space.100">
       <Avatar name={user?.id.toString()} size="large" />

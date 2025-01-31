@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchUsers } from "../../api/userApi";
 import { UserType } from "../../types/user";
 
-export const useUsers = ({
+export const useFetchUsers = ({
   searchKeys,
 }: {
   searchKeys: (keyof UserType)[];
@@ -18,9 +18,9 @@ export const useUsers = ({
       let filteredData = data;
 
       if (search) {
-        filteredData = filteredData.filter((post) =>
+        filteredData = filteredData.filter((user) =>
           searchKeys.some((key) =>
-            post[key].toString().toLowerCase().includes(search.toLowerCase())
+            user[key].toString().toLowerCase().includes(search.toLowerCase())
           )
         );
       }
