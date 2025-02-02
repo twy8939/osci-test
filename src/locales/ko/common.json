@@ -16,5 +16,9 @@
   "no_comments": "댓글이 없습니다.",
   "all": "전체",
   "invalid_email": "이메일 주소를 정확히 입력해주세요.",
-  "required_fields": "필수 입력란은 별표로 표시됩니다."
+  "required_fields": "필수 입력란은 별표로 표시됩니다.",
+  "modal_cancel": "닫기",
+  "modal_confirm": "확인",
+  "delete_confirmation_title": "삭제 확인",
+  "delete_confirmation_content": "정말로 이 항목을 삭제하시겠습니까? \n이 작업은 되돌릴 수 없습니다. 계속 진행하시겠습니까?"
 }
