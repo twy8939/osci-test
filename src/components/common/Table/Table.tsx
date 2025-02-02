@@ -8,13 +8,6 @@ import PaginationControls, {
 } from "../Pagination/PaginationControls";
 import TableEmptyState from "./TableEmptyState";
 
-const tableStyles = xcss({
-  border: "1px solid #ddd",
-  borderRadius: "10px",
-  marginBottom: "space.300",
-  borderBlockEnd: "none",
-});
-
 const headerCellStyles = xcss({
   color: "color.text.subtle",
   fontSize: "14px",
@@ -43,6 +36,13 @@ const Table: React.FC<TableProps> = ({
 }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+
+  const tableStyles = xcss({
+    border: "1px solid #ddd",
+    borderRadius: "10px",
+    marginBottom: "space.300",
+    borderBlockEnd: rows.length > 0 ? "none" : undefined,
+  });
 
   const currentPage = parseInt(searchParams.get("pagingIndex") || "1", 10);
   const pageSize = isPaginated
