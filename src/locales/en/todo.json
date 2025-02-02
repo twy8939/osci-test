@@ -1,8 +1,8 @@
 {
   "page_header": "Todo Management",
-  "title": "Title",
   "status": "Status",
   "completed": "Completed",
   "notCompleted": "Not Completed",
-  "search": "Search for todos"
+  "search": "Search for todos",
+  "no_todos": "No todos found"
 }

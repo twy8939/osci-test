@@ -2,7 +2,7 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import EmptyState from "@atlaskit/empty-state";
-import SearchIcon from "@atlaskit/icon/glyph/search";
+import SearchIcon from "@atlaskit/icon/core/search";
 import { Box, xcss } from "@atlaskit/primitives";
 
 const emptyStyles = xcss({

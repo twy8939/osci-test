@@ -1,15 +1,32 @@
 import PageHeader from "@atlaskit/page-header";
 import { useTranslation } from "react-i18next";
 
-import { Stack } from "@atlaskit/primitives";
-import Table from "../../components/common/Table/Table";
-import { useTodoTableData } from "../../hooks/todo/useTodoTableData";
+import { Grid, media, Stack, xcss } from "@atlaskit/primitives";
 import SearchInput from "../../components/common/Input/SearchInput";
 import SearchableFilterSelect from "../../components/common/Select/SearchableFilterSelect";
 
+import { TodoType } from "../../types/todo";
+import { useFetchTodos } from "../../hooks/todo/useFetchTodos";
+import TodoItem from "../../components/features/Todo/TodoItem";
+import TodoEmptyState from "../../components/features/Todo/TodoEmptyState";
+import Loading from "../../components/common/Loading/Loading";
+
+const responsiveStyles = xcss({
+  [media.above.xxs]: { gridTemplateColumns: "repeat(1, 1fr)" },
+  [media.above.xs]: {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
+  [media.above.sm]: {
+    gridTemplateColumns: "repeat(3, 1fr)",
+  },
+});
+
 export default function TodoListPage() {
   const { t } = useTranslation("todo");
-  const { head, rows, isLoading, data, searchKeys } = useTodoTableData();
+  const searchKeys: (keyof TodoType)[] = ["title"];
+  const { data, isLoading, handleToggle, handleDelete } = useFetchTodos({
+    searchKeys,
+  });
 
   return (
     <Stack>
@@ -32,7 +49,22 @@ export default function TodoListPage() {
           />
         </Stack>
 
-        <Table rows={rows} head={head} isLoading={isLoading} />
+        {isLoading || !data ? (
+          <Loading />
+        ) : data?.length > 0 ? (
+          <Grid gap="space.200" alignItems="center" xcss={responsiveStyles}>
+            {data.map((todo) => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                handleToggle={handleToggle}
+                handleDelete={handleDelete}
+              />
+            ))}
+          </Grid>
+        ) : (
+          <TodoEmptyState />
+        )}
       </Stack>
     </Stack>
   );

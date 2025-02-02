@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchTodos } from "../../api/todoApi";
 import { TodoType } from "../../types/todo";
+import { useEffect, useState } from "react";
 
 export const useFetchTodos = ({
   searchKeys,
@@ -15,27 +16,58 @@ export const useFetchTodos = ({
   const { data, ...queryState } = useQuery({
     queryKey: ["todos"],
     queryFn: fetchTodos,
-    select: (data) => {
-      let filteredData = data;
-
-      if (search) {
-        filteredData = filteredData.filter((todo) =>
-          searchKeys.some((key) =>
-            todo[key].toString().toLowerCase().includes(search.toLowerCase())
-          )
-        );
-      }
-
-      if (status) {
-        const isCompleted = status === "completed" ? true : false;
-        filteredData = filteredData.filter(
-          (todo) => todo.completed === isCompleted
-        );
-      }
-
-      return filteredData;
-    },
   });
 
-  return { data, ...queryState };
+  const [allTodos, setAllTodos] = useState<TodoType[] | undefined>(undefined);
+  const [todos, setTodos] = useState<TodoType[] | undefined>(undefined);
+
+  const filterTodos = (list: TodoType[]) => {
+    let filteredData = list;
+
+    if (search) {
+      const searchLower = search.toLowerCase();
+      filteredData = filteredData.filter((todo) =>
+        searchKeys.some((key) =>
+          todo[key].toString().toLowerCase().includes(searchLower)
+        )
+      );
+    }
+
+    if (status) {
+      const isCompleted = status === "completed";
+      filteredData = filteredData.filter(
+        (todo) => todo.completed === isCompleted
+      );
+    }
+
+    return filteredData.sort(
+      (a, b) => Number(a.completed) - Number(b.completed)
+    );
+  };
+
+  const handleToggle = (id: number) => {
+    setAllTodos((prevTodos) =>
+      prevTodos?.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  const handleDelete = (id: number) => {
+    setAllTodos((prevTodos) => prevTodos?.filter((todo) => todo.id !== id));
+  };
+
+  useEffect(() => {
+    if (data) {
+      setAllTodos(data);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (allTodos) {
+      setTodos(filterTodos(allTodos));
+    }
+  }, [search, status, allTodos]);
+
+  return { data: todos, handleToggle, handleDelete, ...queryState };
 };
