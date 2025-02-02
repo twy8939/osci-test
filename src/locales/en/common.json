@@ -14,5 +14,7 @@
   "no_data": "No data",
   "no_results": "No results found",
   "no_comments": "No comments",
-  "all": "All"
+  "all": "All",
+  "invalid_email": "Please enter a valid email address.",
+  "required_fields": "Required fields are marked with an asterisk"
 }

@@ -14,5 +14,7 @@
   "no_data": "데이터가 없습니다.",
   "no_results": "검색 결과가 없습니다.",
   "no_comments": "댓글이 없습니다.",
-  "all": "전체"
+  "all": "전체",
+  "invalid_email": "이메일 주소를 정확히 입력해주세요.",
+  "required_fields": "필수 입력란은 별표로 표시됩니다."
 }

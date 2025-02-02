@@ -1,14 +1,25 @@
-import Form, { Field, FormFooter } from "@atlaskit/form";
-import PageHeader from "@atlaskit/page-header";
-import Textfield from "@atlaskit/textfield";
+import Form, {
+  Field,
+  FormFooter,
+  FormHeader,
+  FormSection,
+  RequiredAsterisk,
+} from "@atlaskit/form";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import Button from "@atlaskit/button/new";
 import { useFetchUserDetail } from "../../hooks/user/useFetchUserDetail";
+import EmailInput from "../../components/common/Input/EmailInput";
+import TextInput from "../../components/common/Input/TextInput";
+import { Box, Text, xcss } from "@atlaskit/primitives";
+
+const userDetailPageStyles = xcss({
+  marginTop: "space.400",
+});
 
 export default function UserDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const { t } = useTranslation("user");
+  const { t } = useTranslation();
 
   const { data: user } = useFetchUserDetail(id ?? "");
 
@@ -17,25 +28,35 @@ export default function UserDetailPage() {
   }
 
   return (
-    <div>
-      <PageHeader>{t("page_header")}</PageHeader>
+    <Box xcss={userDetailPageStyles}>
       <Form onSubmit={(values) => console.log("submit", values)}>
-        {({ formProps }) => (
+        {({ formProps, submitting }) => (
           <form {...formProps}>
-            <Field name="name" defaultValue={user.name} label={t("name")}>
-              {({ fieldProps }) => <Textfield {...fieldProps} />}
-            </Field>
-            <Field name="email" defaultValue={user.email} label={t("email")}>
-              {({ fieldProps }) => <Textfield {...fieldProps} />}
-            </Field>
+            <FormHeader title={t("user:page_header")}>
+              <Text aria-hidden="true">
+                {t("common:required_fields")} <RequiredAsterisk />
+              </Text>
+            </FormHeader>
+            <FormSection>
+              <Field
+                name="name"
+                defaultValue={user.name}
+                label={t("user:name")}
+                isRequired
+              >
+                {({ fieldProps }) => <TextInput fieldProps={fieldProps} />}
+              </Field>
+              <EmailInput name="email" defaultValue={user.email} isRequired />
+            </FormSection>
+
             <FormFooter>
-              <Button type="submit" appearance="primary">
-                {t("edit")}
+              <Button type="submit" appearance="primary" isLoading={submitting}>
+                {t("common:edit")}
               </Button>
             </FormFooter>
           </form>
         )}
       </Form>
-    </div>
+    </Box>
   );
 }

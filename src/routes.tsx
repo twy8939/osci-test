@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import UserListPage from "./pages/user/UserListPage";
 import UserDetailPage from "./pages/user/UserDetailPage";
 import PostListPage from "./pages/post/PostListPage";
@@ -8,6 +8,7 @@ import TodoListPage from "./pages/todo/TodoListPage";
 
 const AppRoutes: React.FC = () => (
   <Routes>
+    <Route path="/" element={<Navigate to="/user" />} />
     <Route path="/user" element={<UserListPage />} />
     <Route path="/user/:id" element={<UserDetailPage />} />
     <Route path="/post" element={<PostListPage />} />

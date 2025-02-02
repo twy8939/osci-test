@@ -2,6 +2,5 @@
   "page_header": "User Management",
   "name": "Name",
   "email": "Email",
-  "edit": "Edit",
   "search": "Search by name and email"
 }
