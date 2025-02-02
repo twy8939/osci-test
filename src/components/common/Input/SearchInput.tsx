@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { Box, xcss } from "@atlaskit/primitives";
 
-interface SearchBarProps<T> {
+interface SearchInputProps<T> {
   data: T[];
   searchKeys: (keyof T)[];
   placeholderKey?: string;
@@ -14,13 +14,13 @@ interface SearchBarProps<T> {
   height?: string;
 }
 
-const SearchBar = <T,>({
+const SearchInput = <T,>({
   data,
   searchKeys,
   placeholderKey = "common:search",
   width = "100%",
   height = "36px",
-}: SearchBarProps<T>) => {
+}: SearchInputProps<T>) => {
   const warperStyles = xcss({
     position: "relative",
     width,
@@ -144,4 +144,4 @@ const SearchBar = <T,>({
   );
 };
 
-export default SearchBar;
+export default SearchInput;

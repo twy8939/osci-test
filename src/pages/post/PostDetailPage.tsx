@@ -6,9 +6,9 @@ import { useFetchPostDetail } from "../../hooks/post/useFetchPostDetail";
 import { useFetchPostComments } from "../../hooks/comment/useFetchPostComments";
 import EditButton from "../../components/common/Button/EditButton";
 import DeleteButton from "../../components/common/Button/DeleteButton";
-import CommentList from "../../components/features/comment/CommentList";
+import CommentList from "../../components/features/Comment/CommentList";
 import Heading from "@atlaskit/heading";
-import UserProfile from "../../components/features/profile/UserProfile";
+import UserProfile from "../../components/features/Profile/UserProfile";
 
 const someStyles = xcss({
   marginTop: "space.400",
