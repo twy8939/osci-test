@@ -30,33 +30,34 @@ const CheckboxItem = ({
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.stopPropagation();
-
     if (onDelete) onDelete();
   };
   return (
-    <Box xcss={itemStyles} onClick={onCheckboxChange}>
-      <Flex justifyContent="space-between" alignItems="center">
-        <Flex alignItems="center" gap="space.100">
-          <Checkbox
-            xcss={checkboxStyles}
-            isChecked={checked}
-            onChange={onCheckboxChange}
-            onClick={onCheckboxChange}
-          />
-          <Stack space="space.075">
-            <Text weight="semibold">{title}</Text>
-            {description}
-          </Stack>
-        </Flex>
+    <>
+      <Box xcss={itemStyles} onClick={onCheckboxChange}>
+        <Flex justifyContent="space-between" alignItems="center">
+          <Flex alignItems="center" gap="space.100">
+            <Checkbox
+              xcss={checkboxStyles}
+              isChecked={checked}
+              onChange={onCheckboxChange}
+              onClick={onCheckboxChange}
+            />
+            <Stack space="space.075">
+              <Text weight="semibold">{title}</Text>
+              {description}
+            </Stack>
+          </Flex>
 
-        {onDelete && (
-          <DeleteButton
-            appearance="subtle"
-            onClick={(e) => handleDeleteClick(e)}
-          />
-        )}
-      </Flex>
-    </Box>
+          {onDelete && (
+            <DeleteButton
+              appearance="subtle"
+              onClick={(e) => handleDeleteClick(e)}
+            />
+          )}
+        </Flex>
+      </Box>
+    </>
   );
 };
 

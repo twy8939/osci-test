@@ -16,5 +16,9 @@
   "no_comments": "No comments",
   "all": "All",
   "invalid_email": "Please enter a valid email address.",
-  "required_fields": "Required fields are marked with an asterisk"
+  "required_fields": "Required fields are marked with an asterisk",
+  "modal_cancel": "Close",
+  "modal_confirm": "Confirm",
+  "delete_confirmation_title": "Delete Confirmation",
+  "delete_confirmation_content": "Are you sure you want to delete this item? \nThis action cannot be undone. Do you wish to proceed?"
 }
