@@ -4,5 +4,7 @@
   "completed": "완료됨",
   "notCompleted": "미완료",
   "search": "해야할 일을 검색해주세요.",
-  "no_todos": "해야할 할 일이 없습니다."
+  "no_todos": "해야할 할 일이 없습니다.",
+  "notification_toggle_completed": "할 일이 완료되었습니다.",
+  "notification_toggle_not_completed": "할 일이 미완료 상태로 변경되었습니다."
 }

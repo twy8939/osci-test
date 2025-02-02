@@ -3,6 +3,8 @@
   "status": "Status",
   "completed": "Completed",
   "notCompleted": "Not Completed",
-  "search": "Search for todos",
-  "no_todos": "No todos found"
+  "search": "Please search for a task.",
+  "no_todos": "No tasks available.",
+  "notification_toggle_completed": "The task has been completed.",
+  "notification_toggle_not_completed": "The task has been marked as not completed."
 }

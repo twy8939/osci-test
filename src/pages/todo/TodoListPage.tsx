@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Grid, media, Stack, xcss } from "@atlaskit/primitives";
 import SearchInput from "../../components/common/Input/SearchInput";
 import SearchableFilterSelect from "../../components/common/Select/SearchableFilterSelect";
-
 import { TodoType } from "../../types/todo";
 import { useFetchTodos } from "../../hooks/todo/useFetchTodos";
 import TodoItem from "../../components/features/Todo/TodoItem";
@@ -24,48 +23,51 @@ const responsiveStyles = xcss({
 export default function TodoListPage() {
   const { t } = useTranslation("todo");
   const searchKeys: (keyof TodoType)[] = ["title"];
-  const { data, isLoading, handleToggle, handleDelete } = useFetchTodos({
+  const { data, isLoading, handleToggle, handleDelete, flag } = useFetchTodos({
     searchKeys,
   });
 
   return (
-    <Stack>
-      <PageHeader>{t("page_header")}</PageHeader>
-      <Stack space="space.300">
-        <Stack space={"space.200"}>
-          <SearchInput
-            data={data || []}
-            searchKeys={searchKeys}
-            placeholderKey="todo:search"
-          />
-          <SearchableFilterSelect
-            filterKey="status"
-            label={t("status")}
-            options={[
-              { label: t("completed"), value: "completed" },
-              { label: t("notCompleted"), value: "notCompleted" },
-            ]}
-            isAll
-          />
-        </Stack>
+    <>
+      {flag}
+      <Stack>
+        <PageHeader>{t("page_header")}</PageHeader>
+        <Stack space="space.300">
+          <Stack space={"space.200"}>
+            <SearchInput
+              data={data || []}
+              searchKeys={searchKeys}
+              placeholderKey="todo:search"
+            />
+            <SearchableFilterSelect
+              filterKey="status"
+              label={t("status")}
+              options={[
+                { label: t("completed"), value: "completed" },
+                { label: t("notCompleted"), value: "notCompleted" },
+              ]}
+              isAll
+            />
+          </Stack>
 
-        {isLoading || !data ? (
-          <Loading />
-        ) : data?.length > 0 ? (
-          <Grid gap="space.200" alignItems="center" xcss={responsiveStyles}>
-            {data.map((todo) => (
-              <TodoItem
-                key={todo.id}
-                todo={todo}
-                handleToggle={handleToggle}
-                handleDelete={handleDelete}
-              />
-            ))}
-          </Grid>
-        ) : (
-          <TodoEmptyState />
-        )}
+          {isLoading || !data ? (
+            <Loading />
+          ) : data?.length > 0 ? (
+            <Grid gap="space.200" alignItems="center" xcss={responsiveStyles}>
+              {data.map((todo) => (
+                <TodoItem
+                  key={todo.id}
+                  todo={todo}
+                  handleToggle={handleToggle}
+                  handleDelete={handleDelete}
+                />
+              ))}
+            </Grid>
+          ) : (
+            <TodoEmptyState />
+          )}
+        </Stack>
       </Stack>
-    </Stack>
+    </>
   );
 }
